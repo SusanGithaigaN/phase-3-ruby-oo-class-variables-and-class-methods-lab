@@ -1,8 +1,10 @@
 class Song
-    attr_accessor :name, :artist, :genre
     @@count =0
     @@artists =[]
     @@genres = []
+
+    attr_accessor :name, :artist, :genre
+
     def initialize(name, artist, genre)
         @name = name
         @artist = artist
@@ -10,7 +12,7 @@ class Song
         @@count += 1
         # add elements to array
         # method ? = arr.push
-        @@artists.push(artist) 
+        @@artists.push(@artist)
         @@genres.push(genre) 
     end
     # return created songs
@@ -20,20 +22,25 @@ class Song
     def self.count
         @@count
     end
-    # return artists
 
-    def self.artists
-        @@artists
-    end
-    # return genres
-    def self.genres
-        @@genres
-    end
+    # return artists
     # def self.artists
     #     @@artists
     # end
-    
-    # def self.artist
-    #     @@artist 
-    # end
+    def self.artists
+        @@artists.each {|a|a }.uniq
+    end
+
+    # return genres
+    def self.genres
+        @@genres.each{|a|a}.uniq
+    end
+    # genre_count
+    def self.genre_count
+        @@genres.tally
+    end
+    # artist_count
+    def self.artist_count
+        @@artists.tally
+    end
 end
